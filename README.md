@@ -1,142 +1,117 @@
-# PerkSkin — Commerce / Marketplace Template
+# PerkSkin — Local setup (educational/demo)
 
-Ez a repository egy kereskedelmi célú, white‑label template a PerkSkin elnevezésű case-opening / marketplace rendszerhez. Nem kizárólag oktatási célra készült: célja, hogy gyorsan testreszabható alapot adjon termékek, dobozok és piactér funkciók felépítéséhez, melyet tovább lehet fejleszteni és értékesíteni.
+This short guide helps you run the PerkSkin demo locally. The project is educational — sample accounts and passwords are included for testing only.
 
-Fontos: a projekt egy induló sablon — testreszabást, biztonsági és jogi ellenőrzést igényel, mielőtt élő rendszerként vagy termékként árusítanád.
+## Prerequisites
+- PHP 8.x installed (PDO and SQLite extensions enabled)
+- Terminal (PowerShell / Bash)
 
-## Elvárások (prerequisites)
-- PHP 8.x telepítve (PDO és SQLite extension engedélyezve)
-- Parancssor (PowerShell / Bash)
-
-## Gyors lépések
-1. Projekt gyökér: `\PerkSkin`
-2. Hozd létre/seed-eld az SQLite adatbázist:
+## Quick steps
+1. Project root: `\PerkSkin`
+2. Create / seed the SQLite database:
 
 ```bash
 php database/seed.php
 ```
-Ez létrehozza a `database/webdb.sqlite` fájlt és hozzáad egy admin felhasználót.
 
-3. Indítsd a beépített PHP fejlesztői szervert (a `public` mappát szolgálja ki):
+This creates `database/webdb.sqlite` and adds an admin user.
+
+3. Start the built-in PHP development server (serves `public`):
 
 ```bash
 cd public
 php -S localhost:8000
 ```
 
-4. Nyisd meg a böngészőt és navigálj az alábbi URL-re:
+4. Open the browser at:
 
 ```
 http://localhost:8000
 ```
 
-## Teszt felhasználó (demo)
+## Test account (demo)
 - Email: `admin@admin.com`
-- Jelszó: `admin123`
+- Password: `admin123`
 
-Ez a demo fiók gyors tesztelésre szolgál. Ha a sablont értékesíteni szándékozod, javasolt eltávolítani vagy megváltoztatni a seedelt admin fiókokat és minden hardkodolt jelszót.
+Use this account to test features such as spinner and quick-sell.
 
-## Gyakori parancsok és ellenőrzések
-- API ellenőrzés (pl. fordítások):
+## Admin features and settings
+The demo includes admin endpoints and API actions that let you configure the system or edit content (educational/demo use):
 
-```bash
-curl "http://localhost:8000/index.php?page=api&action=listTranslations"
-```
+- Users & sessions: view user accounts and sessions in `perksin_users` and `perksin_user_sessions`.
+- Wallets & top-ups: inspect `perksin_user_wallets` and `perksin_wallet_transactions`; top-ups can be simulated via the `walletAdjust` API.
+- Gems & transactions: `perksin_user_gems` and `perksin_gem_transactions`; adjust with `gemsAdjust` API.
+- Cases & items: manage cases and their items via `perksin_cases`, `perksin_case_items`, `perksin_item_codes`; admin APIs include `listCases`, `saveCase`, `listProducts`, `saveProduct`.
+- Content sections: site content blocks are in `perksin_content_sections`; APIs: `listContentSections`, `saveContentSection`.
+- Translations (i18n): override translations in `perksin_translations_kv`; APIs: `listTranslations`, `saveTranslation`.
+- Badges, ranks and access: `perksin_badges`, `perksin_user_badges`, `perksin_ranks`. Ranks can be used to control which cases are available to users by setting thresholds.
 
-- Ellenőrizd, hogy az adatbázis fájl létezik:
+Notes on admin operations:
+- The demo does not provide a full GUI for every admin task; many settings can be changed directly in the database or via the API endpoints (for example: `index.php?page=api&action=saveContentSection`).
+- The `rank` icon and `level` system: with `perksin_ranks` and user attributes (e.g. `level`) you can restrict case visibility — change rank thresholds or user levels via DB or admin endpoints.
+- Security: this is a demo for learning. Do not use seeded admin credentials in production; use HTTPS and strong auth in real deployments.
 
-```bash
-ls -la database/webdb.sqlite
-```
+## Feature matrix
+Below is a concise feature matrix that indicates which features are implemented, partially implemented, or are placeholders/not implemented. Use this for README/GitHub documentation.
 
-- Ha hibák jelennek meg a konzolban (500-as választ ad a backend), nézd meg a PHP error logot vagy a terminál kimenetét, ahol a beépített szervert indítottad.
+- **Authentication**
+	- Login (email/password): Implemented (form + API) — Implemented
+	- Register: Implemented — Implemented
+	- Logout: Implemented — Implemented
+	- Remember me: UI present but persistent login not implemented — Partial
+	- Two-factor authentication (2FA / TOTP): Implemented (setup with QR code or manual secret, then verify with a 6-digit code) — Implemented
 
-## Gyakori problémák és javítások
-- "unable to open database file": ellenőrizd, hogy a `database/webdb.sqlite` létezik-e és a PHP folyamat írhat/olvashatja.
-- Szintaxis/SQL hibák: ha `FOR UPDATE`-t talál a kódban, SQLite nem támogatja — azt eltávolítottuk vagy módosítani kell.
-- API 401 "unauthorized": győződj meg róla, hogy be vagy jelentkezve (session cookie-k), vagy használj a felületen bejelentkezést az admin adatokkal.
+- **User profile**
+	- View / Edit profile (getProfile/saveProfile API): Implemented — Implemented
+	- Avatar upload: Not implemented — Not implemented
 
-## Functionális megjegyzések (template)
+Note: 2FA is intentionally disabled for the seeded demo admin account (`admin@admin.com`), so test the feature with a regular user account.
 
-- A projekt egy induló sablon (template) white‑label marketplace / case‑opening szolgáltatásokhoz. Gyors prototípus-készítésre, proof‑of‑conceptekhez vagy termékalapnak egy kereskedelmi megoldáshoz alkalmas.
-
-## Használati célok (példák)
-
-- Fejlesztható piactér vagy "case opening" szolgáltatás (játékbeli tárgyak, kuponok, licencek kezelése).
-- White‑label megoldás játékokhoz, promóciókhoz vagy digitális termékek kereskedelméhez.
-- SaaS szolgáltatás alapja: multi‑tenant vagy single‑tenant kiadáshoz adaptálható.
-- Gyors prototípus és demo értékesítéshez (a front‑end és backend alapfunkciói rögtön használhatók).
-
-## Eladásra előkészítés — gyors checklist
-
-1. Távolítsd el a seedelt demo fiókokat (pl. `admin@admin.com`) vagy változtasd meg a jelszavakat.
-2. Konfiguráld a production környezetet: HTTPS, környezeti változók, biztonságos jelszó- és session kezelés.
-3. Dokumentáld a telepítést és a szükséges konfigurációs lépéseket a vásárlók számára.
-4. Add meg a licenc feltételeit és a support/karbantartási csomagokat.
-5. Gondoskodj fizetési integrációról (ha szükséges) és jogi megfelelésről (ÁSZF, adatkezelés).
-
-## Hibajelenség: "gyors eladás" (Quick Sell) nem működik
-
-- Ha doboz megnyitás után a "Gyors eladás" nem működik, gyakori okok:
-  - A `perksin_user_inventory` vagy `perksin_wallet_transactions` tábla hiánya (futtasd `php database/seed.php`).
-  - Backend API hiba (500): nézd meg a terminál kimenetet, ahol a PHP szerver fut, vagy a böngésző DevTools Network fülét az API válasz (`/index.php?page=api&action=recordCaseHistory`).
-
-Ha a probléma a kódból ered (SQL szintaxis vagy hiányzó `perksin_` prefix), ellenőrizd az [app/Controllers/ApiController.php](app/Controllers/ApiController.php) és [app/Controllers/CaseController.php](app/Controllers/CaseController.php) fájlokat.
-
-## Funkciólista (Feature matrix)
-A következő lista röviden összegzi, mely funkciók érhetők el az alkalmazásban, melyek részben működnek és melyek csak UI/placeholder vagy hiányoznak. Ez a lista fejlesztési/oktatási célra készült.
-
-- **Hitelesítés**
-  - Login (email/password): Implementálva (form és API) — Működik
-  - Register: Implementálva — Működik
-  - Logout: Implementálva — Működik
-  - Remember me: UI elem van, szerveroldali tartós bejelentkezés nincs — Részben
-  - Two-factor auth (2FA): Nincs implementálva — Nincs
-
-- **Felhasználói profil**
-  - Megtekintés / szerkesztés (getProfile/saveProfile API): Implementálva — Működik
-  - Avatar feltöltés: Nincs implementálva — Nincs
-
-- **Pénzügy / Wallet**
-  - walletBalance: Implementálva — Működik
-  - walletTransactions: Implementálva — Működik
-  - walletAdjust / Top-up (szimulált): Implementálva (API) — Működik (nem valódi fizetés)
-  - Valódi fizetési gateway integráció: Nincs — Nincs
+- **Wallet / Payments**
+	- walletBalance: Implemented — Implemented
+	- walletTransactions: Implemented — Implemented
+	- walletAdjust / Top-up (simulated): Implemented (API) — Implemented (no real payments)
+	- Real payment gateway integration: Not implemented — Not implemented
 
 - **Gems**
-  - gemsBalance / gemsAdjust / gemTransactions: Implementálva — Működik
+	- gemsBalance / gemsAdjust / gemTransactions: Implemented — Implemented
 
 - **Spinner / Spins**
-  - Spin state (spinState) és adjust (spinAdjust): Implementálva — Működik
-  - UI spinner: Implementálva — Működik
+	- Spin state (spinState) and adjust (spinAdjust): Implemented — Implemented
+	- UI spinner: Implemented — Implemented
 
-- **Dobozok (Cases)**
-  - Lista és megjelenítés: Implementálva — Működik
-  - Doboz megnyitás / recordCaseHistory: Implementálva — Működik
-  - Quick sell (gyors eladás): Szerveroldali folyamat támogatott (wallet tx + history) — Működik (fixelve)
-  - Készlet / kód kezelés (item codes): Részben implementálva (támogatás van), UI/flow lehet részben hiányos — Részben
+- **Cases**
+	- List & display cases: Implemented — Implemented
+	- Open case / recordCaseHistory: Implemented — Implemented
+	- Quick sell: Server flow exists (wallet tx + history) — Implemented (fixed)
+	- Stock / item codes (item_codes): Partially implemented — Partial
 
-- **Tartalom és fordítások**
-  - Content sections (list/save): Implementálva — Működik
-  - Translations (DB-backed overrides): Implementálva — Működik
+- **Content & Translations**
+	- Content sections (list/save): Implemented — Implemented
+	- Translations (DB overrides): Implemented — Implemented
 
-- **Admin / Moderáció**
-  - Admin API végpontok: Több admin API létezik (list/save content, cases, products) — Működik API szinten
-  - Admin GUI (teljes körű felület minden művelethez): Nincs teljesen kész — Részben
-  - Ranks / Badges (adatmodell): Adatbázisban megvannak; UI vezérlés hiányos — Részben
+- **Admin / Moderation**
+	- Admin API endpoints: multiple admin APIs exist (list/save content, cases, products) — Implemented at API level
+	- Admin GUI: Not fully implemented for all operations — Partial
+	- Ranks / Badges (data model): Present in DB; UI controls limited — Partial
 
-- **Külső bejelentkezések / Social**
-  - Steam / Google / Discord / Facebook gombok: UI-ban jelen vannak, de integrációk nem működnek — Nincs
+- **Social logins**
+	- Steam / Google / Discord / Facebook buttons: UI placeholders only — Not implemented
 
-- **Egyéb**
-  - Events / Missions / Exchange nézetek: Frontend megvannak, backend logika részben statikus vagy hiányos — Részben
-  - Valódi chat / realtime funkciók: UI elemek vannak, backend nincs (placeholder) — Nincs
+- **Other**
+	- Events / Missions / Exchange views: Frontend present; backend logic partial or static — Partial
+	- Real-time chat: UI placeholder, backend not implemented — Not implemented
 
-Ha fel szeretnéd tüntetni a GitHub README-ben ezt a mátrixot, vagy részletesebben szeretnéd jelölni a hiányzó/tervezett elemeket, segítek formázni és kibővíteni a leírást.
+If you want this matrix formatted specifically for GitHub (table view, badges, or TODO markers), I can update the README files accordingly.
 
-## További lépések fejlesztőknek
-- Kód szerkesztése után frissítsd a böngészőt, vagy indítsd újra a PHP szervert.
-- Forráskód módosításai után érdemes futtatni a `database/seed.php`-t csak ha új táblákat szeretnél létrehozni — ne futtasd éles adat veszteség esetén.
+## Troubleshooting
+- "unable to open database file": ensure `database/webdb.sqlite` exists and the PHP process has read/write access.
+- SQL syntax issues: SQLite does not support `FOR UPDATE`; remove or change these queries when using SQLite.
+- API 401 "unauthorized": make sure you are logged in (session cookie) or use the UI login with the admin credentials.
+
+## Developer notes
+- After code edits, refresh the browser or restart the PHP server.
+- Run `php database/seed.php` only when you need to create missing tables — avoid running on production data.
 
 ---
-Kérdésed van a beállítással kapcsolatban vagy szeretnéd, hogy lefuttassam helyetted a szervert/teszteket, szólj nyugodtan.
+If you want, I can run the server and test the quick-sell flow for you locally — tell me to proceed.
