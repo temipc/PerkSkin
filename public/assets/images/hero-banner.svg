@@ -1,0 +1,36 @@
+<svg width="900" height="520" viewBox="0 0 900 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#7C4DFF"/>
+    <stop offset="100%" stop-color="#00F0FF"/>
+  </linearGradient>
+  <linearGradient id="g2" x1="1" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#FF4D6D"/>
+    <stop offset="100%" stop-color="#7C4DFF"/>
+  </linearGradient>
+  <filter id="blur" x="-10%" y="-10%" width="120%" height="120%">
+    <feGaussianBlur stdDeviation="30"/>
+  </filter>
+</defs>
+<rect width="900" height="520" rx="24" fill="#12152A"/>
+<circle cx="160" cy="120" r="120" fill="url(#g1)" opacity="0.35" filter="url(#blur)"/>
+<circle cx="780" cy="420" r="140" fill="url(#g2)" opacity="0.35" filter="url(#blur)"/>
+<g>
+  <rect x="80" y="110" width="260" height="160" rx="18" fill="#171A2F" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="110" y="140" width="200" height="100" rx="12" fill="url(#g1)" opacity="0.9"/>
+  <text x="95" y="290" fill="#E6E8FF" font-family="Inter, Arial" font-size="18" font-weight="600">Daily Boost</text>
+</g>
+<g>
+  <rect x="350" y="70" width="260" height="160" rx="18" fill="#171A2F" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="380" y="100" width="200" height="100" rx="12" fill="url(#g2)" opacity="0.9"/>
+  <text x="365" y="250" fill="#E6E8FF" font-family="Inter, Arial" font-size="18" font-weight="600">Neon Nights</text>
+</g>
+<g>
+  <rect x="620" y="140" width="200" height="220" rx="18" fill="#171A2F" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="650" y="170" width="140" height="110" rx="12" fill="url(#g1)" opacity="0.9"/>
+  <text x="640" y="320" fill="#E6E8FF" font-family="Inter, Arial" font-size="18" font-weight="600">Violet Vault</text>
+</g>
+<path d="M120 410 C 210 390, 320 430, 420 410 C 520 390, 640 430, 760 410" stroke="#2A2E4F" stroke-width="8" stroke-linecap="round"/>
+<path d="M140 410 L760 410" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+<text x="80" y="460" fill="#8C93B2" font-family="Inter, Arial" font-size="14">PerkSpin — Neon style demo banner</text>
+</svg>

@@ -1,0 +1,6 @@
+[
+  { "date": "2025-09-03", "title": "Limited Case Drop", "description": "Egynapos limitált doboz promóció.", "href": "/index.php?page=home#cases", "type": "limited" },
+  { "date": "2025-09-12", "title": "Weekend Boost", "description": "Hétvégi event: extra jutalmak a community case-ekben.", "href": "/index.php?page=home#cases", "type": "boost" },
+  { "date": "2025-09-18", "title": "Partner Promo", "description": "Partnerkedvezmény beváltási akció.", "href": "/index.php?page=exchange", "type": "promo" },
+  { "date": "2025-09-27", "title": "Limited Case Drop", "description": "Visszatér a limitált doboz.", "href": "/index.php?page=home#cases", "type": "limited" }
+]

@@ -1,0 +1,96 @@
+PerkSkin Commercial License Agreement
+
+Copyright (c) 2026 László Temesvári
+
+All rights reserved.
+
+This software and associated files (the "Software") are the proprietary property of the author.
+
+By using, copying, modifying, or distributing the Software, you agree to the terms of this license.
+
+--------------------------------------------------
+1. Grant of License
+--------------------------------------------------
+
+You are granted a limited, non-exclusive, non-transferable, non-sublicensable license to:
+
+- Use the Software for personal or commercial projects
+- Modify and customize the Software
+- Deploy the Software as part of a web application, SaaS platform, or internal system
+
+--------------------------------------------------
+2. Attribution Requirement
+--------------------------------------------------
+
+You MUST give visible credit to the original creator:
+
+"László – PerkSkin Template"
+
+This attribution must:
+- Be visible in the application (e.g. footer, about page, or admin panel), OR
+- Be included in documentation if the software is not publicly visible
+
+Removing, hiding, or obscuring this attribution is strictly prohibited.
+
+--------------------------------------------------
+3. Restrictions
+--------------------------------------------------
+
+You are NOT allowed to:
+
+- Resell, redistribute, sublicense, or share the Software source code
+- Sell the Software as a standalone product, template, or competing solution
+- Publish the source code publicly (e.g. GitHub, GitLab, etc.)
+- Remove or modify copyright notices or attribution
+- Use the Software in a way that competes directly with the original product offering
+
+--------------------------------------------------
+4. White-label Usage
+--------------------------------------------------
+
+White-label usage is permitted ONLY if:
+
+- The Software is used as part of a larger product or service
+- The attribution requirement (Section 2) is still respected
+
+--------------------------------------------------
+5. Commercial Use
+--------------------------------------------------
+
+Commercial use is allowed, including:
+
+- SaaS platforms
+- Subscription-based services
+- Client projects
+
+However, reselling the Software itself (as code/template) is strictly prohibited without a separate commercial agreement.
+
+--------------------------------------------------
+6. Ownership
+--------------------------------------------------
+
+The Software is licensed, not sold.
+
+All intellectual property rights remain with the original author.
+
+--------------------------------------------------
+7. No Warranty
+--------------------------------------------------
+
+The Software is provided "AS IS", without warranty of any kind.
+
+The author is not liable for any damages, data loss, or legal issues arising from the use of the Software.
+
+--------------------------------------------------
+8. Termination
+--------------------------------------------------
+
+This license is automatically terminated if you violate any of its terms.
+
+Upon termination, you must immediately stop using the Software and delete all copies.
+
+--------------------------------------------------
+9. Contact
+--------------------------------------------------
+
+For extended licensing, redistribution rights, or partnerships, contact the author.
